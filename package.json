@@ -16,5 +16,9 @@
   "main": "index.js",
   "repository": "https://github.com/pierry01/time_to_answer.git",
   "author": "pierry01 <pierrybm@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.32.2",
+    "webpack-dev-server": "^3.4.1"
+  }
 }
