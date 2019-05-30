@@ -1,0 +1,30 @@
+<h1><%= "#{action_message} #{@admin.model_name.human}" %></h1>
+<br><br>
+
+<% if @admin.errors.any? %>
+  <% @admin.errors.full_messages.each do |message| %>
+    <div class="alert alert-danger" role="alert">
+      <li><%= message %></li>
+    </div>
+  <% end %>
+<% end %>
+
+<%= form_with(model: [ :admins_backoffice, @admin ], local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, class:'form-control', id: 'exampleInputEmail1', placeholder: t('placeholders.admin_email') %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :password %>
+    <%= form.password_field :password, class:'form-control', id: 'exampleInputPassword1', placeholder: t('placeholders.password') %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, class:'form-control', id: 'exampleInputPassword1', placeholder: t('placeholders.password_confirmation') %>
+  </div>
+
+  <br>
+  <button type="submit" class="btn btn-primary"><%= t('buttons.save') %></button>
+<% end %>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../../../favicon.ico">
+
+  <title>TimeToAnswer</title>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'site' %> 
+</head>
+
+<body>
+  <div class="container-fluid">
+    <header>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <strong>Album</strong>
+          </a>
+
+          <% unless user_signed_in? %>
+            <strong><%= link_to 'Entrar', new_user_session_path, class: 'navbar-brand d-flex align-items-center' %></strong>
+            <strong><%= link_to 'Cadastre-se', new_user_registration_path, class:'navbar-brand d-flex align-items-center' %></strong>
+          <% end %>
+              <% if user_signed_in? %>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" style="font-size: 19px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= current_user.email %>
+                  </button>
+
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <%= link_to users_backoffice_welcome_index_path, class: 'dropdown-item' do %>
+                      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i></i> Perfil
+                    <% end %>
+                    <div class="dropdown-divider"></div>
+                      <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
+                      <% end %>
+                    </div>
+                </div>
+              <% end %>
+            
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+      <section class="jumbotron text-center", style="margin-top: 35px">
+        <div>
+          <h1>Site::Welcome#index</h1>
+          <p>Find me in app/views/site/welcome/index.html.erb</p>
+
+          <% if user_signed_in? %>
+            <p>Usuario LOGADO: <%= current_user.email %></p>
+          <% end %>
+
+          <% if admin_signed_in? %>
+            <p>Administrador LOGADO: <%= current_admin.email %></p>
+          <% end %>
+        </div>
+      </section>
+      <%= yield %>
+    </main>
+
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'site' %>
+  </div>
+
+  <% if notice %>
+    <%= javascript_tag do %>
+      $.notify('<%= notice %>', 'success')
+    <% end %>
+  <% end %>
+</body>
+</html>

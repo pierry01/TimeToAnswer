@@ -1,0 +1,17 @@
+{
+  "name": "time_to_answer",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.2",
+    "bootstrap": "4.3.1",
+    "bootstrap-growl-ifightcrime": "^1.1.0",
+    "holderjs": "^2.9.6",
+    "jquery": "1.9.1",
+    "popper.js": "^1.15.0"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/pierry01/time_to_answer.git",
+  "author": "pierry01 <pierrybm@gmail.com>",
+  "license": "MIT"
+}
