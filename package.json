@@ -9,6 +9,9 @@
     "jquery": "1.9.1",
     "popper.js": "^1.15.0"
   },
+  "engines": {
+    "yarn": ">= 1.0.0"
+  },
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/pierry01/time_to_answer.git",
