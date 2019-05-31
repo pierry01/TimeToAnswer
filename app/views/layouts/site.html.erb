@@ -20,10 +20,14 @@
   <div class="container-fluid">
     <header>
       <div class="navbar navbar-dark bg-dark box-shadow">
+        <%= form_with(url: site_search_path, method: :get, local: true) do |form| %>
+          <%= form.text_field :term, class: 'form-control', placeholder: 'Pesquisar...' %>
+        <% end %>
+        
         <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <strong>Album</strong>
-          </a>
+          <%= link_to  site_welcome_index_path, class: 'navbar-brand d-flex align-items-center' do %>
+            <strong>Home</strong>
+          <% end %>
 
           <% unless user_signed_in? %>
             <strong><%= link_to 'Entrar', new_user_session_path, class: 'navbar-brand d-flex align-items-center' %></strong>
@@ -54,19 +58,10 @@
     <main role="main">
       <section class="jumbotron text-center", style="margin-top: 35px">
         <div>
-          <h1>Site::Welcome#index</h1>
-          <p>Find me in app/views/site/welcome/index.html.erb</p>
-
-          <% if user_signed_in? %>
-            <p>Usuario LOGADO: <%= current_user.email %></p>
-          <% end %>
-
-          <% if admin_signed_in? %>
-            <p>Administrador LOGADO: <%= current_admin.email %></p>
-          <% end %> <br>
-
-          <%= form_with(url: site_search_path, method: :get, local: true) do |form| %>
-              <%= form.text_field :term, class: 'form-control', placeholder: 'Pesquisar...' %>
+          <% unless params[:term] %>
+            <h3>Últimas perguntas cadastradas...</h3>
+          <% else %>
+            <h3>Resultados para o termo "<%= params[:term] %>"...</h3>
           <% end %>
         </div>
       </section>
