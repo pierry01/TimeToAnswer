@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,24 +29,24 @@
             <strong><%= link_to 'Entrar', new_user_session_path, class: 'navbar-brand d-flex align-items-center' %></strong>
             <strong><%= link_to 'Cadastre-se', new_user_registration_path, class:'navbar-brand d-flex align-items-center' %></strong>
           <% end %>
-              <% if user_signed_in? %>
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" style="font-size: 19px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= current_user.email %>
-                  </button>
+          
+          <% if user_signed_in? %>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" style="font-size: 19px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.email %>
+              </button>
 
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <%= link_to users_backoffice_welcome_index_path, class: 'dropdown-item' do %>
-                      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i></i> Perfil
-                    <% end %>
-                    <div class="dropdown-divider"></div>
-                      <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
-                      <% end %>
-                    </div>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <%= link_to users_backoffice_welcome_index_path, class: 'dropdown-item' do %>
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i></i> Perfil
+                <% end %>
+                <div class="dropdown-divider"></div>
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
+                  <% end %>
                 </div>
-              <% end %>
-            
+            </div>
+          <% end %>
         </div>
       </div>
     </header>
@@ -63,6 +63,10 @@
 
           <% if admin_signed_in? %>
             <p>Administrador LOGADO: <%= current_admin.email %></p>
+          <% end %> <br>
+
+          <%= form_with(url: site_search_path, method: :get, local: true) do |form| %>
+              <%= form.text_field :term, class: 'form-control', placeholder: 'Pesquisar...' %>
           <% end %>
         </div>
       </section>
