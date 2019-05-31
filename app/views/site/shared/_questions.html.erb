@@ -1,14 +1,32 @@
-<% @questions.each do |question| %>
-  <div class="card" style="margin-top: 35px">
-    <div class="card-header"><%= question.description %></div>
-    <ul>
-      <% question.answers.each do |answer| %>
-        <div class="card-body">
-          <li><%= answer.description %></li>
-        </div>
-      <% end %>
-    </ul>
+<section class="jumbotron text-center", style="margin-top: 35px">
+  <div>
+    <% unless params[:term] %>
+      <h3>Últimas perguntas cadastradas...</h3>
+    <% else %>
+      <h3>Resultados para o termo "<%= params[:term] %>"...</h3>
+    <% end %>
   </div>
+</section>
+
+<% @questions.each do |question| %>
+  <%= form_with url: site_answer_path, local: true do |form| %>
+    <div class="card" style="margin-top: 35px">
+      <div class="card-header"><%= question.description %></div>
+
+      <ul class="questions">
+        <% question.answers.each do |answer| %>
+          <div class="form-check">
+            <label class="card-body">
+              <%= radio_button_tag 'answer', answer.id %>
+              <%= answer.description %>
+            </label>
+          </div>
+        <% end %>
+
+        <%= form.submit 'Responder', class: 'btn btn-light' %>
+      </ul>
+    </div>
+  <% end %>
 <% end %>
 <br>
 <div class="d-flex justify-content-center">

@@ -56,15 +56,6 @@
     </header>
 
     <main role="main">
-      <section class="jumbotron text-center", style="margin-top: 35px">
-        <div>
-          <% unless params[:term] %>
-            <h3>Últimas perguntas cadastradas...</h3>
-          <% else %>
-            <h3>Resultados para o termo "<%= params[:term] %>"...</h3>
-          <% end %>
-        </div>
-      </section>
       <%= yield %>
     </main>
 
