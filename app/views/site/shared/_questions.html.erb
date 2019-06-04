@@ -9,7 +9,7 @@
 </section>
 
 <% @questions.each do |question| %>
-  <%= form_with url: site_answer_path, local: true do |form| %>
+  <%= form_with url: site_answer_path do |form| %>
     <div class="card" style="margin-top: 35px">
       <div class="card-header"><%= question.description %></div>
 
@@ -17,13 +17,13 @@
         <% question.answers.each do |answer| %>
           <div class="form-check">
             <label class="card-body">
-              <%= radio_button_tag 'answer', answer.id %>
+              <%= radio_button_tag 'answer_id', answer.id %>
               <%= answer.description %>
             </label>
           </div>
         <% end %>
 
-        <%= form.submit 'Responder', class: 'btn btn-light' %>
+        <%= form.submit 'Responder', class: 'btn btn-light', id: "submit_#{question.id}" %>
       </ul>
     </div>
   <% end %>
