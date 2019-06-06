@@ -34,9 +34,10 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+        <%= link_to users_backoffice_profile_path, class: 'nav-link' do %>
+          <i class="fas fa-user"></i>
+          <span>Dados do perfil</span>
+        <% end %>
       </li>
     </ul>
     <!-- End of Sidebar -->
