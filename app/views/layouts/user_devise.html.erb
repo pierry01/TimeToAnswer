@@ -28,5 +28,13 @@
       <% end %>
     <% end %>
   <% end %>
+
+  <% unless resource.errors.empty? %>
+    <% resource.errors.full_messages.each do |msg| %>
+      <%= javascript_tag do %>
+        $.notify('<%= msg %>', 'error')
+      <% end %>
+    <% end %> 
+  <% end %>
 </body>
 </html>
