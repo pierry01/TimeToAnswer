@@ -27,9 +27,19 @@
       <%= profile_form.text_field :address, class:'form-control', placeholder: 'Endereço' %>
     </div>
 
-    <div class="form-group">
-      <%= profile_form.text_field :gender, class:'form-control', placeholder: 'Gênero' %>
+    <div class="form-check-inline">
+      <label class="form-check-label">
+        <%= profile_form.radio_button :gender, 'F', class:'form-check-input' %>Feminino
+      </label>
     </div>
+
+    <div class="form-check-inline">
+      <label class="form-check-label">
+        <%= profile_form.radio_button :gender, 'M', class:'form-check-input' %>Masculino
+      </label>
+    </div>
+
+    <br><br>
 
     <div class="form-group">
       <%= profile_form.text_field :birthdate, class:'form-control', placeholder: 'Data de nascimento' %>
