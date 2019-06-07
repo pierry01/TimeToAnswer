@@ -22,6 +22,20 @@
     <%= form.text_field :email, class:'form-control', placeholder: t('placeholders.admin_email'), readonly: true %>
   </div>
 
+  <%= form.fields_for :user_profile do |profile_form| %>
+    <div class="form-group">
+      <%= profile_form.text_field :address, class:'form-control', placeholder: 'Endereço' %>
+    </div>
+
+    <div class="form-group">
+      <%= profile_form.text_field :gender, class:'form-control', placeholder: 'Gênero' %>
+    </div>
+
+    <div class="form-group">
+      <%= profile_form.text_field :birthdate, class:'form-control', placeholder: 'Data de nascimento' %>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= form.password_field :password, class:'form-control', placeholder: t('placeholders.password') %>
   </div>
