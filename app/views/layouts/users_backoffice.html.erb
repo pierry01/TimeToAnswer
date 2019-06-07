@@ -140,5 +140,11 @@
       $.notify('<%= notice %>', 'success')
     <% end %>
   <% end %>
+
+  <%= javascript_tag do %>
+    $(function() {
+      $('.datepicker').datepicker();
+    });
+  <% end %>
 </body>
 </html>

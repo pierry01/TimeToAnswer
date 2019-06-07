@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-//= require jquery/jquery.min
+//= require jquery/dist/jquery.min
 //= require bootstrap/dist/js/bootstrap.min
 //= require holderjs/holder.min
 //= require notify
