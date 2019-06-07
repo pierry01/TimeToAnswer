@@ -4,4 +4,5 @@
 
 //= require jquery/jquery.min
 //= require bootstrap/dist/js/bootstrap.min
+//= require notify
 //= require sb-admin-2.min

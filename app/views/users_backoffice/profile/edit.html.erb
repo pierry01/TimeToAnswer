@@ -1,11 +1,34 @@
-<form>
+<h1>Dados do perfil</h1>
+<br><br>
+
+<% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |message| %>
+    <div class="alert alert-danger" role="alert">
+      <li><%= message %></li>
+    </div>
+  <% end %>
+<% end %>
+
+<%= form_with(url: users_backoffice_profile_path, model: @user, local: true) do |form| %>
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <%= form.text_field :first_name, class:'form-control', placeholder: 'Primeiro nome' %>
   </div>
 
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <%= form.text_field :last_name, class:'form-control', placeholder: 'Último nome' %>
   </div>
-</form>
+
+  <div class="form-group">
+    <%= form.text_field :email, class:'form-control', placeholder: t('placeholders.admin_email'), readonly: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.password_field :password, class:'form-control', placeholder: t('placeholders.password') %>
+  </div>
+
+  <div class="form-group">
+    <%= form.password_field :password_confirmation, class:'form-control', placeholder: t('placeholders.password_confirmation') %>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary"><%= t('buttons.save') %></button>
+<% end %>
