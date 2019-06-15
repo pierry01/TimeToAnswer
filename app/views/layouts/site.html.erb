@@ -20,11 +20,11 @@
   <div class="container-fluid">
     <header>
       <div class="navbar navbar-dark bg-dark box-shadow">
-        <%= form_with(url: site_search_path, method: :get, local: true) do |form| %>
-          <%= form.text_field :term, class: 'form-control', placeholder: 'Pesquisar...' %>
-        <% end %>
-        
         <div class="container d-flex justify-content-between">
+          <%= form_with(url: site_search_path, method: :get, local: true) do |form| %>
+            <%= form.text_field :term, class: 'form-control', placeholder: 'Pesquisar...' %>
+          <% end %>
+        
           <%= link_to  site_welcome_index_path, class: 'navbar-brand d-flex align-items-center' do %>
             <strong>Home</strong>
           <% end %>
