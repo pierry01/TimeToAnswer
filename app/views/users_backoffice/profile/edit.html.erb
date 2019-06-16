@@ -11,47 +11,64 @@
 
 <%= form_with(url: users_backoffice_profile_path, model: @user, local: true) do |form| %>
   <div class="form-group">
-    <%= form.text_field :first_name, class:'form-control', placeholder: 'Primeiro nome' %>
+    <%= form.text_field :first_name, 
+      class:'form-control', 
+      placeholder: 'Primeiro nome' %>
   </div>
 
   <div class="form-group">
-    <%= form.text_field :last_name, class:'form-control', placeholder: 'Último nome' %>
+    <%= form.text_field :last_name, 
+      class:'form-control', 
+      placeholder: 'Último nome' %>
   </div>
 
   <div class="form-group">
-    <%= form.text_field :email, class:'form-control', placeholder: t('placeholders.admin_email'), readonly: true %>
+    <%= form.text_field :email, class:'form-control', 
+      placeholder: t('placeholders.admin_email'), 
+      readonly: true %>
   </div>
 
   <%= form.fields_for :user_profile do |profile_form| %>
     <div class="form-group">
-      <%= profile_form.text_field :address, class:'form-control', placeholder: 'Endereço' %>
+      <%= profile_form.text_field :address,
+        class:'form-control', 
+          placeholder: 'Endereço' %>
     </div>
-
+    
     <div class="form-check-inline">
       <label class="form-check-label">
-        <%= profile_form.radio_button :gender, 'F', class:'form-check-input' %>Feminino
+        <%= profile_form.radio_button :gender,
+          'F', class:'form-check-input' %>Feminino
       </label>
     </div>
 
     <div class="form-check-inline">
       <label class="form-check-label">
-        <%= profile_form.radio_button :gender, 'M', class:'form-check-input' %>Masculino
+        <%= profile_form.radio_button :gender,
+          'M', class:'form-check-input' %>Masculino
       </label>
     </div>
 
     <br><br>
 
     <div class="form-group">
-      <%= profile_form.text_field :birthdate, value: @user.user_profile.birthdate, class:'form-control datepicker' %>
+      <%= profile_form.text_field :birthdate, 
+        value: (l(@user.user_profile.birthdate) if @user.user_profile.birthdate.present?), 
+        placeholder: 'Data de nascimento...', 
+        class:'form-control datepicker' %>
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= form.password_field :password, class:'form-control', placeholder: t('placeholders.password') %>
+    <%= form.password_field :password,
+      class:'form-control', 
+      placeholder: t('placeholders.password') %>
   </div>
 
   <div class="form-group">
-    <%= form.password_field :password_confirmation, class:'form-control', placeholder: t('placeholders.password_confirmation') %>
+    <%= form.password_field :password_confirmation,
+      class:'form-control', 
+      placeholder: t('placeholders.password_confirmation') %>
   </div>
   <br>
   <button type="submit" class="btn btn-primary"><%= t('buttons.save') %></button>

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     get 'profile', to: 'profile#edit'
     patch 'profile', to: 'profile#update'
   end
+  
+  get 'backoffice', to: 'admins_backoffice/welcome#index'
+  get 'user_backoffice', to: 'users_backoffice/welcome#index'
 
   devise_for :users
   devise_for :admins, skip: [:registrations]

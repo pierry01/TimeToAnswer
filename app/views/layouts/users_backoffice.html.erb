@@ -17,22 +17,24 @@
 </head>
 
 <body id="page-top">
-
-  <!-- Page Wrapper -->
   <div id="wrapper">
-
-    <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <%= link_to users_backoffice_welcome_index_path, class: 'sidebar-brand d-flex align-items-center justify-content-center' do %>
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-
-        <div class="sidebar-brand-text mx-3">Bem-vindo <%= current_user.first_name %></div>
+      <% if current_user.first_name %>
+        <%= link_to users_backoffice_welcome_index_path, 'data-toggle': 'modal', 'data-target': '#avatarModal', class: 'sidebar-brand d-flex align-items-center justify-content-center' do %>
+          <%= image_tag(avatar_url, size: '55x55', class:'img-profile rounded-circle', id: 'imgAvatarMd') %>
+          <div class="sidebar-brand-text mx-3"><%= current_user.first_name %></div>
+        <% end %>
       <% end %>
 
       <hr class="sidebar-divider my-0">
 
+      <li class="nav-item">
+        <%= link_to user_backoffice_path, class: 'nav-link' do %>
+          <i class="fas fa-home"></i>
+          <span>Início</span>
+        <% end %>
+      </li>
+      
       <li class="nav-item">
         <%= link_to users_backoffice_profile_path, class: 'nav-link' do %>
           <i class="fas fa-user"></i>
@@ -40,59 +42,30 @@
         <% end %>
       </li>
     </ul>
-    <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
-      <!-- Main Content -->
       <div id="content">
-
-        <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
           <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= current_user.email %></span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= current_user.first_name %></span>
+                <%= image_tag(avatar_url, class: 'img-profile rounded-circle', id: 'imgAvatarSm') %>
               </a>
 
-              <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Sair
                 <% end %>
               </div>
             </li>
-
           </ul>
-
         </nav>
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
+        
         <div class="container-fluid">
           <%= yield %>
         </div>
-        <!-- /.container-fluid -->
-
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
@@ -100,37 +73,42 @@
           </div>
         </div>
       </footer>
-      <!-- End of Footer -->
-
     </div>
-    <!-- End of Content Wrapper -->
-
   </div>
-  <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+  
+  <!-- Modal -->
+  <div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
+      <%= form_with(url: users_backoffice_profile_path, model: current_user) do |form| %>
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+          <h5 class="modal-title" id="exampleModalLongTitle">Avatar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+        <div class="modal-body">
+          <%= form.fields_for :user_profile do |profile_form| %>
+            <div class="form-group", style="text-align: center">
+              <%= image_tag(avatar_url, id: 'imgAvatarLg',
+              size: '150x150', class: 'img-profile rounded-circle') %>
+              <br><br>
+              <%= profile_form.file_field :avatar %>
+            </div>
+          <% end %>
         </div>
+        <div class="modal-footer">
+          <%= form.submit 'Salvar', class: 'btn btn-primary'%>
+        </div>
+      <% end %>
       </div>
     </div>
   </div>
+  <!-- /Modal -->
   
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'users_backoffice' %>

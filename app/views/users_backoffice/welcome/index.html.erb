@@ -1,1 +1,52 @@
-<p>welcome index</p>
+<h1>Questões Respondidas</h1>
+<br><br>
+
+<div class="row">
+    <div class="col-xl-4 col-md-4 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <h3>Total</h3>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @user_statistic.total_questions %></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-list-ol fa-3x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-xl-4 col-md-4 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <h3>Certas</h3>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @user_statistic.right_questions %></div>
+            </div>
+            <div class="col-auto">
+              <i class="far fa-check-square fa-3x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-xl-4 col-md-4 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <h3>Erradas</h3>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @user_statistic.wrong_questions %></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-times fa-3x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
