@@ -9,9 +9,13 @@ Things you may want to cover:
 2.6.1
 
 * System dependencies
+
 All in Gemfile
 
+
 * Configuration
-$ git clone https://github.com/pierry01/TimeToAnswer#time_to_answer
+$ git clone https://github.com/pierry01/TimeToAnswer
+
 cd TimeToAnswer
+
 rails dev:setup
